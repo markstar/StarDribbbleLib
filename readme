@@ -6,3 +6,8 @@ DISCLAIMER:
 
 This library uses the first draft of the Dribbble API (http://www.dribbble.com/api).
 As the API is updated this library will also be maintained, but bear with me as the API is frequently changing in these early stages.
+
+TODO:
+
+* Add ASDoc comments
+* Create examples
