@@ -1,6 +1,6 @@
 At last the Dribbble API is here!
 
-This is an AS3 library for Dribbble that is built using StarRequests.
+This is an AS3 library for Dribbble built using StarRequests.
 
 DISCLAIMER:
 
@@ -9,5 +9,8 @@ As the API is updated this library will also be maintained, but bear with me as 
 
 TODO:
 
+* Add appropriate error handling (this will come when it's implemented in the API)
 * Add ASDoc comments
 * Create examples
+* Add code snippets to wiki
+* Add unit tests
