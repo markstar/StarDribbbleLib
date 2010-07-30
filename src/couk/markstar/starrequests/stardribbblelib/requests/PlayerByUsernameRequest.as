@@ -2,7 +2,6 @@ package couk.markstar.starrequests.stardribbblelib.requests
 {
 	import couk.markstar.starrequests.stardribbblelib.utils.DribbbleDataParserUtil;
 	import couk.markstar.starrequests.stardribbblelib.vo.Player;
-	import couk.markstar.starrequests.stardribbblelib.vo.Shot;
 	
 	import org.osflash.signals.Signal;
 	

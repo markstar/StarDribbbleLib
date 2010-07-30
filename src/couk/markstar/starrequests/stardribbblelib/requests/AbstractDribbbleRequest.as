@@ -4,7 +4,6 @@ package couk.markstar.starrequests.stardribbblelib.requests
 	
 	import couk.markstar.starrequests.requests.AbstractRequest;
 	
-	import flash.net.URLLoaderDataFormat;
 	import flash.net.URLVariables;
 	
 	import mx.rpc.events.FaultEvent;
@@ -46,19 +45,11 @@ package couk.markstar.starrequests.stardribbblelib.requests
 		{
 			var result:Object = JSON.decode( e.result.toString() );
 			
-			/*if( e.result.rsp.stat == "fail" )
-			   {
-			   failed( e.result.rsp.err.msg );
-			   }
+			// TODO: Add error handling here when the API implements it
 			
-			   // need to add proper error handling here
-			
-			   if( e.result.rsp.stat == "ok" )
-			 {*/
 			_progressSignal.dispatch( 1 );
 			parseResponse( result );
 			cleanup();
-			//}
 		}
 		
 		protected function parseResponse( response:Object ):void
