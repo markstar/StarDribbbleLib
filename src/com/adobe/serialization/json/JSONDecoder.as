@@ -1,42 +1,45 @@
 /*
-  Copyright (c) 2008, Adobe Systems Incorporated
-  All rights reserved.
+   Copyright (c) 2008, Adobe Systems Incorporated
+   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without 
-  modification, are permitted provided that the following conditions are
-  met:
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions are
+   met:
 
-  * Redistributions of source code must retain the above copyright notice, 
-    this list of conditions and the following disclaimer.
-  
-  * Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the 
-    documentation and/or other materials provided with the distribution.
-  
-  * Neither the name of Adobe Systems Incorporated nor the names of its 
-    contributors may be used to endorse or promote products derived from 
-    this software without specific prior written permission.
+ * Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
-  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
-  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+ * Neither the name of Adobe Systems Incorporated nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+   IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+   THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+   PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+   EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+   PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+   PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+   LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 
 package com.adobe.serialization.json
 {
 	
+	/**
+	 * @private
+	 */
 	public class JSONDecoder
-	{	
-	
-		/** 
+	{
+		
+		/**
 		 * Flag indicating if the parser should be strict about the format
 		 * of the JSON string it is attempting to decode.
 		 */
@@ -52,7 +55,7 @@ package com.adobe.serialization.json
 		private var token:JSONToken;
 		
 		/**
-		 * Constructs a new JSONDecoder to parse a JSON string 
+		 * Constructs a new JSONDecoder to parse a JSON string
 		 * into a native object.
 		 *
 		 * @param s The JSON string to be converted
@@ -64,7 +67,7 @@ package com.adobe.serialization.json
 		 * @tiptext
 		 */
 		public function JSONDecoder( s:String, strict:Boolean )
-		{	
+		{
 			this.strict = strict;
 			tokenizer = new JSONTokenizer( s, strict );
 			
@@ -72,7 +75,7 @@ package com.adobe.serialization.json
 			value = parseValue();
 			
 			// Make sure the input stream is empty
-			if ( strict && nextToken() != null )
+			if( strict && nextToken() != null )
 			{
 				tokenizer.parseError( "Unexpected characters left in input stream" );
 			}
@@ -116,22 +119,22 @@ package com.adobe.serialization.json
 			nextToken();
 			
 			// check to see if we have an empty array
-			if ( token.type == JSONTokenType.RIGHT_BRACKET )
+			if( token.type == JSONTokenType.RIGHT_BRACKET )
 			{
 				// we're done reading the array, so return it
 				return a;
 			}
 			// in non-strict mode an empty array is also a comma
 			// followed by a right bracket
-			else if ( !strict && token.type == JSONTokenType.COMMA )
+			else if( !strict && token.type == JSONTokenType.COMMA )
 			{
 				// move past the comma
 				nextToken();
 				
 				// check to see if we're reached the end of the array
-				if ( token.type == JSONTokenType.RIGHT_BRACKET )
+				if( token.type == JSONTokenType.RIGHT_BRACKET )
 				{
-					return a;	
+					return a;
 				}
 				else
 				{
@@ -141,30 +144,30 @@ package com.adobe.serialization.json
 			
 			// deal with elements of the array, and use an "infinite"
 			// loop because we could have any amount of elements
-			while ( true )
+			while( true )
 			{
 				// read in the value and add it to the array
 				a.push( parseValue() );
-			
+				
 				// after the value there should be a ] or a ,
 				nextToken();
 				
-				if ( token.type == JSONTokenType.RIGHT_BRACKET )
+				if( token.type == JSONTokenType.RIGHT_BRACKET )
 				{
 					// we're done reading the array, so return it
 					return a;
 				}
-				else if ( token.type == JSONTokenType.COMMA )
+				else if( token.type == JSONTokenType.COMMA )
 				{
 					// move past the comma and read another value
 					nextToken();
 					
 					// Allow arrays to have a comma after the last element
 					// if the decoder is not in strict mode
-					if ( !strict )
+					if( !strict )
 					{
 						// Reached ",]" as the end of the array, so return it
-						if ( token.type == JSONTokenType.RIGHT_BRACKET )
+						if( token.type == JSONTokenType.RIGHT_BRACKET )
 						{
 							return a;
 						}
@@ -175,7 +178,7 @@ package com.adobe.serialization.json
 					tokenizer.parseError( "Expecting ] or , but found " + token.value );
 				}
 			}
-            return null;
+			return null;
 		}
 		
 		/**
@@ -186,7 +189,7 @@ package com.adobe.serialization.json
 			// create the object internally that we're going to
 			// attempt to parse from the tokenizer
 			var o:Object = new Object();
-						
+			
 			// store the string part of an object member so
 			// that we can assign it a value in the object
 			var key:String
@@ -195,20 +198,20 @@ package com.adobe.serialization.json
 			nextToken();
 			
 			// check to see if we have an empty object
-			if ( token.type == JSONTokenType.RIGHT_BRACE )
+			if( token.type == JSONTokenType.RIGHT_BRACE )
 			{
 				// we're done reading the object, so return it
 				return o;
 			}
 			// in non-strict mode an empty object is also a comma
 			// followed by a right bracket
-			else if ( !strict && token.type == JSONTokenType.COMMA )
+			else if( !strict && token.type == JSONTokenType.COMMA )
 			{
 				// move past the comma
 				nextToken();
 				
 				// check to see if we're reached the end of the object
-				if ( token.type == JSONTokenType.RIGHT_BRACE )
+				if( token.type == JSONTokenType.RIGHT_BRACE )
 				{
 					return o;
 				}
@@ -220,9 +223,9 @@ package com.adobe.serialization.json
 			
 			// deal with members of the object, and use an "infinite"
 			// loop because we could have any amount of members
-			while ( true )
+			while( true )
 			{
-				if ( token.type == JSONTokenType.STRING )
+				if( token.type == JSONTokenType.STRING )
 				{
 					// the string value we read is the key for the object
 					key = String( token.value );
@@ -231,32 +234,32 @@ package com.adobe.serialization.json
 					nextToken();
 					
 					// after the string there should be a :
-					if ( token.type == JSONTokenType.COLON )
-					{	
+					if( token.type == JSONTokenType.COLON )
+					{
 						// move past the : and read/assign a value for the key
 						nextToken();
-						o[key] = parseValue();	
+						o[ key ] = parseValue();
 						
 						// move past the value to see what's next
 						nextToken();
 						
 						// after the value there's either a } or a ,
-						if ( token.type == JSONTokenType.RIGHT_BRACE )
+						if( token.type == JSONTokenType.RIGHT_BRACE )
 						{
 							// we're done reading the object, so return it
-							return o;	
+							return o;
 						}
-						else if ( token.type == JSONTokenType.COMMA )
+						else if( token.type == JSONTokenType.COMMA )
 						{
 							// skip past the comma and read another member
 							nextToken();
 							
 							// Allow objects to have a comma after the last member
 							// if the decoder is not in strict mode
-							if ( !strict )
+							if( !strict )
 							{
 								// Reached ",}" as the end of the object, so return it
-								if ( token.type == JSONTokenType.RIGHT_BRACE )
+								if( token.type == JSONTokenType.RIGHT_BRACE )
 								{
 									return o;
 								}
@@ -273,11 +276,11 @@ package com.adobe.serialization.json
 					}
 				}
 				else
-				{	
+				{
 					tokenizer.parseError( "Expecting string but found " + token.value );
 				}
 			}
-            return null;
+			return null;
 		}
 		
 		/**
@@ -286,28 +289,29 @@ package com.adobe.serialization.json
 		private function parseValue():Object
 		{
 			// Catch errors when the input stream ends abruptly
-			if ( token == null )
+			if( token == null )
 			{
 				tokenizer.parseError( "Unexpected end of input" );
 			}
-					
-			switch ( token.type )
+			
+			switch( token.type )
 			{
 				case JSONTokenType.LEFT_BRACE:
 					return parseObject();
-					
+				
 				case JSONTokenType.LEFT_BRACKET:
 					return parseArray();
-					
+				
 				case JSONTokenType.STRING:
 				case JSONTokenType.NUMBER:
 				case JSONTokenType.TRUE:
 				case JSONTokenType.FALSE:
 				case JSONTokenType.NULL:
 					return token.value;
-					
+				
 				case JSONTokenType.NAN:
-					if ( !strict )
+					
+					if( !strict )
 					{
 						return token.value;
 					}
@@ -315,13 +319,13 @@ package com.adobe.serialization.json
 					{
 						tokenizer.parseError( "Unexpected " + token.value );
 					}
-
+				
 				default:
 					tokenizer.parseError( "Unexpected " + token.value );
-					
+			
 			}
 			
-            return null;
+			return null;
 		}
 	}
 }
