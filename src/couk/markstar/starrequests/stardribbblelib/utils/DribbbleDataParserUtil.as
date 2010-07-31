@@ -36,6 +36,7 @@ package couk.markstar.starrequests.stardribbblelib.utils
 			shot.imageTeaserURL = data.image_teaser_url;
 			shot.width = data.width;
 			shot.height = data.height;
+			shot.createdAt = new Date( data.created_at );
 			
 			shot.player = parsePlayer( data.player );
 			
@@ -50,6 +51,7 @@ package couk.markstar.starrequests.stardribbblelib.utils
 			player.url = data.url;
 			player.avatarURL = data.avatar_url;
 			player.location = data.location;
+			player.createdAt = new Date( data.created_at );
 			
 			return player;
 		}

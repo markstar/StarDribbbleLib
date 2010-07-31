@@ -11,6 +11,7 @@ package couk.markstar.starrequests.stardribbblelib.vo
 		public var width:uint;
 		public var height:uint;
 		public var player:Player;
+		public var createdAt:Date;
 		
 		public function Shot()
 		{
