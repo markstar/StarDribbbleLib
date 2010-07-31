@@ -14,3 +14,25 @@ TODO:
 * Create examples
 * Add code snippets to wiki
 * Add unit tests
+
+CHANGELOG:
+
+v0.3
+* Added createdAt property to the Player and Shot classes to reflect the latest API changes
+
+v0.2
+* Removed redundant imports
+* Removed JSON classes from ASDocs
+
+v0.1
+* Initial implementation of the Dribbble API. The following requests have been implemented
+	DebutShotsRequest( page, amountPerPage )
+	EveryoneShotsRequest( page, amountPerPage )
+	FollowingShotsByPlayerIDRequest( playerID, page, amountPerPage )
+	FollowingShotsByPlayerUsernameRequest( playerUsername, page, amountPerPage )
+	PlayerByIDRequest( playerID )
+	PlayerByUsernameRequest( playerUsername )
+	PlayerShotsByIDRequest( playerID, page, amountPerPage )
+	PlayerShotsByUsernameRequest( playerUsername, page, amountPerPage )
+	PopularShotsRequest( page, amountPerPage )
+	ShotByIDRequest( shotID )
