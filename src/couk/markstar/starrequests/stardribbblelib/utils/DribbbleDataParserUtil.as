@@ -29,6 +29,7 @@ package couk.markstar.starrequests.stardribbblelib.utils
 		public function parseShot( data:Object ):Shot
 		{
 			var shot:Shot = new Shot();
+			
 			shot.id = data.id;
 			shot.title = data.title;
 			shot.url = data.url;
@@ -37,7 +38,10 @@ package couk.markstar.starrequests.stardribbblelib.utils
 			shot.width = data.width;
 			shot.height = data.height;
 			shot.createdAt = new Date( data.created_at );
-			
+			shot.viewsCount = data.views_count;
+			shot.likesCount = data.likes_count;
+			shot.commentsCount = data.comments_count;
+			shot.reboundsCount = data.rebounds_count;
 			shot.player = parsePlayer( data.player );
 			
 			return shot;
@@ -46,12 +50,17 @@ package couk.markstar.starrequests.stardribbblelib.utils
 		public function parsePlayer( data:Object ):Player
 		{
 			var player:Player = new Player();
+			
 			player.id = data.id;
 			player.name = data.name;
 			player.url = data.url;
 			player.avatarURL = data.avatar_url;
 			player.location = data.location;
 			player.createdAt = new Date( data.created_at );
+			player.shotsCount = data.shots_count;
+			player.drafteesCount = data.draftees_count;
+			player.followersCount = data.followers_count;
+			player.followingCount = data.following_count;
 			
 			return player;
 		}

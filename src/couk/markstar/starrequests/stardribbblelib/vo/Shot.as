@@ -12,6 +12,10 @@ package couk.markstar.starrequests.stardribbblelib.vo
 		public var height:uint;
 		public var player:Player;
 		public var createdAt:Date;
+		public var viewsCount:uint;
+		public var likesCount:uint;
+		public var commentsCount:uint;
+		public var reboundsCount:uint;
 		
 		public function Shot()
 		{
