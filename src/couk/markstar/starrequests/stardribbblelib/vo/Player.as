@@ -13,6 +13,8 @@ package couk.markstar.starrequests.stardribbblelib.vo
 		public var drafteesCount:uint;
 		public var followersCount:uint;
 		public var followingCount:uint;
+		public var twitterScreenName:String;
+		public var draftedByPlayerID:uint;
 		
 		public function Player()
 		{

@@ -15,6 +15,16 @@ TODO:
 
 CHANGELOG:
 
+v0.5
+* Added twitterScreenName and draftedByPlayerID properties to the Player class to reflect the latest API changes
+* Added the following requests to reflect the latest API changes:
+	PlayerDrafteesByIDRequest( playerID, page, amountPerPage )
+	PlayerDrafteesByUsernameRequest( playerUsername, page, amountPerPage )
+	PlayerFollowersByIDRequest( playerID, page, amountPerPage )
+	PlayerFollowersByUsernameRequest( playerUsername, page, amountPerPage )
+	PlayerFollowingByIDRequest( playerID, page, amountPerPage )
+	PlayerFollowingByUsernameRequest( playerUsername, page, amountPerPage )
+
 v0.4
 * Added viewsCount, likesCount, commentsCount and reboundsCount properties to the Shot class to reflect the latest API changes
 * Added shotsCount, drafteesCount, followersCount and followingCount properties to the Player class to reflect the latest API changes
