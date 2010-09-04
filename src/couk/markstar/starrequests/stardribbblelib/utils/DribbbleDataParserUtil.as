@@ -1,5 +1,7 @@
 package couk.markstar.starrequests.stardribbblelib.utils
 {
+	import couk.markstar.starrequests.stardribbblelib.vo.Comment;
+	import couk.markstar.starrequests.stardribbblelib.vo.Comments;
 	import couk.markstar.starrequests.stardribbblelib.vo.Player;
 	import couk.markstar.starrequests.stardribbblelib.vo.Players;
 	import couk.markstar.starrequests.stardribbblelib.vo.Shot;
@@ -25,6 +27,26 @@ package couk.markstar.starrequests.stardribbblelib.utils
 			}
 			
 			return shots;
+		}
+		
+		public function parseComments( data:Object ):Comments
+		{
+			var comments:Comments = new Comments();
+			
+			comments.page = data.page;
+			comments.pages = data.pages;
+			comments.amountPerPage = data.per_page;
+			comments.total = data.total;
+			
+			var i:uint;
+			var length:uint = data.comments.length;
+			
+			for( i = 0; i < length; i++ )
+			{
+				comments.addComment( parseComment( data.comments[ i ] ) );
+			}
+			
+			return comments;
 		}
 		
 		public function parsePlayers( data:Object ):Players
@@ -68,6 +90,19 @@ package couk.markstar.starrequests.stardribbblelib.utils
 			return shot;
 		}
 		
+		public function parseComment( data:Object ):Comment
+		{
+			var comment:Comment = new Comment();
+			
+			comment.id = data.id;
+			comment.body = data.body;
+			comment.likesCount = data.likes_count;
+			comment.createdAt = new Date( data.created_at );
+			comment.player = parsePlayer( data.player );
+			
+			return comment;
+		}
+		
 		public function parsePlayer( data:Object ):Player
 		{
 			var player:Player = new Player();
@@ -83,6 +118,12 @@ package couk.markstar.starrequests.stardribbblelib.utils
 			player.drafteesCount = data.draftees_count;
 			player.followersCount = data.followers_count;
 			player.followingCount = data.following_count;
+			player.commentsCount = data.comments_count;
+			player.commentsReceivedCount = data.comments_received_count;
+			player.likesCount = data.likes_count;
+			player.likesReceivedCount = data.likes_received_count;
+			player.reboundsCount = data.rebounds_count;
+			player.reboundsReceivedCount = data.rebounds_received_count;
 			player.createdAt = new Date( data.created_at );
 			
 			return player;

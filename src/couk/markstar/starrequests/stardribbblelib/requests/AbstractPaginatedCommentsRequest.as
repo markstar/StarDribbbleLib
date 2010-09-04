@@ -1,25 +1,25 @@
 package couk.markstar.starrequests.stardribbblelib.requests
 {
 	import couk.markstar.starrequests.stardribbblelib.utils.DribbbleDataParserUtil;
-	import couk.markstar.starrequests.stardribbblelib.vo.Players;
+	import couk.markstar.starrequests.stardribbblelib.vo.Comments;
 	
 	import org.osflash.signals.Signal;
 	
-	internal class AbstractPaginatedPlayersRequest extends AbstractDribbbleRequest
+	internal class AbstractPaginatedCommentsRequest extends AbstractDribbbleRequest
 	{
-		public function AbstractPaginatedPlayersRequest( page:uint = 1, amountPerPage:uint = 15 )
+		public function AbstractPaginatedCommentsRequest( page:uint = 1, amountPerPage:uint = 15 )
 		{
 			super();
 			
 			_params.per_page = amountPerPage > 30 ? 30 : amountPerPage;
 			_params.page = page;
 			
-			_completedSignal = new Signal( Players );
+			_completedSignal = new Signal( Comments );
 		}
 		
 		override protected function parseResponse( response:Object ):void
 		{
-			_completedSignal.dispatch( new DribbbleDataParserUtil().parsePlayers( response ) );
+			_completedSignal.dispatch( new DribbbleDataParserUtil().parseComments( response ) );
 		}
 	}
 }

@@ -15,6 +15,12 @@ TODO:
 
 CHANGELOG:
 
+v0.6
+* Added commentsCount, commentsReceivedCount, likesCount, likesReceivedCount, reboundsCount and reboundsReceivedCount to the Player class to reflect the latest API changes
+* Added the following requests to reflect the latest API changes:
+	ReboundsByShotIDRequest( shotID, page, amountPerPage )
+	CommentsByShotIDRequest( shotID, page, amountPerPage )
+	
 v0.5
 * Added twitterScreenName and draftedByPlayerID properties to the Player class to reflect the latest API changes
 * Added the following requests to reflect the latest API changes:

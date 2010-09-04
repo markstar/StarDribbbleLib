@@ -15,6 +15,12 @@ package couk.markstar.starrequests.stardribbblelib.vo
 		public var followingCount:uint;
 		public var twitterScreenName:String;
 		public var draftedByPlayerID:uint;
+		public var commentsCount:uint;
+		public var commentsReceivedCount:uint;
+		public var likesCount:uint;
+		public var likesReceivedCount:uint;
+		public var reboundsCount:uint;
+		public var reboundsReceivedCount:uint;
 		
 		public function Player()
 		{
