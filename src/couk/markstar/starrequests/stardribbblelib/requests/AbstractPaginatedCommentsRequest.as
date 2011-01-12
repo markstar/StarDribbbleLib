@@ -14,12 +14,12 @@ package couk.markstar.starrequests.stardribbblelib.requests
 			_params.per_page = amountPerPage > 30 ? 30 : amountPerPage;
 			_params.page = page;
 			
-			_completedSignal = new Signal( Comments );
+			_completed = new Signal( Comments );
 		}
 		
 		override protected function parseResponse( response:Object ):void
 		{
-			_completedSignal.dispatch( new DribbbleDataParserUtil().parseComments( response ) );
+			_completed.dispatch( new DribbbleDataParserUtil().parseComments( response ) );
 		}
 	}
 }

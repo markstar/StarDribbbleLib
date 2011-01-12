@@ -15,6 +15,13 @@ TODO:
 
 CHANGELOG:
 
+v0.7
+* Added shortURL and reboundSourceID to the Shot class to reflect the latest API changes
+* Added username to the Player class to reflect the latest API changes
+* Added the following requests to reflect the latest API changes:
+	LikedShotsByPlayerIDRequest( playerID, page, amountPerPage )
+	LikedShotsByPlayerUsernameRequest( playerUsername, page, amountPerPage )
+
 v0.6
 * Added commentsCount, commentsReceivedCount, likesCount, likesReceivedCount, reboundsCount and reboundsReceivedCount to the Player class to reflect the latest API changes
 * Added the following requests to reflect the latest API changes:

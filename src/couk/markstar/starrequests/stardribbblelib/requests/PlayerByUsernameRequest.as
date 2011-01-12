@@ -13,12 +13,12 @@ package couk.markstar.starrequests.stardribbblelib.requests
 			
 			_service.url = "players/" + playerUsername;
 			
-			_completedSignal = new Signal( Player );
+			_completed = new Signal( Player );
 		}
 		
 		override protected function parseResponse( response:Object ):void
 		{
-			_completedSignal.dispatch( new DribbbleDataParserUtil().parsePlayer( response ) );
+			_completed.dispatch( new DribbbleDataParserUtil().parsePlayer( response ) );
 		}
 	}
 }

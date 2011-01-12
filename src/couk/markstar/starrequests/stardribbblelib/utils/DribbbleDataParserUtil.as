@@ -76,6 +76,7 @@ package couk.markstar.starrequests.stardribbblelib.utils
 			shot.id = data.id;
 			shot.title = data.title;
 			shot.url = data.url;
+			shot.shortURL = data.short_url;
 			shot.imageURL = data.image_url;
 			shot.imageTeaserURL = data.image_teaser_url;
 			shot.width = data.width;
@@ -84,6 +85,7 @@ package couk.markstar.starrequests.stardribbblelib.utils
 			shot.likesCount = data.likes_count;
 			shot.commentsCount = data.comments_count;
 			shot.reboundsCount = data.rebounds_count;
+			shot.reboundSourceID = data.rebound_source_id;
 			shot.createdAt = new Date( data.created_at );
 			shot.player = parsePlayer( data.player );
 			
@@ -109,6 +111,7 @@ package couk.markstar.starrequests.stardribbblelib.utils
 			
 			player.id = data.id;
 			player.name = data.name;
+			player.username = data.username;
 			player.url = data.url;
 			player.avatarURL = data.avatar_url;
 			player.location = data.location;

@@ -8,9 +8,5 @@ package couk.markstar.starrequests.stardribbblelib.vo
 		public var likesCount:uint;
 		public var createdAt:Date;
 		public var player:Player;
-		
-		public function Comment()
-		{
-		}
 	}
 }

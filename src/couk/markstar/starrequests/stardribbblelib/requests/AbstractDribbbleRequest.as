@@ -47,7 +47,7 @@ package couk.markstar.starrequests.stardribbblelib.requests
 			
 			// TODO: Add error handling here when the API implements it
 			
-			_progressSignal.dispatch( 1 );
+			_progress.dispatch( 1 );
 			parseResponse( result );
 			cleanup();
 		}
@@ -59,7 +59,7 @@ package couk.markstar.starrequests.stardribbblelib.requests
 		
 		protected function serviceFaultListener( e:FaultEvent ):void
 		{
-			failed( e.message.toString() );
+			dispatchFailed( e.message.toString() );
 		}
 	}
 }
